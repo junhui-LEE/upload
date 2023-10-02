@@ -56,7 +56,7 @@ public class ServletUploadControllerV2 {
             InputStream inputStream = part.getInputStream();
             String body = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
             // -> 바이너리를 문자로 바꾸던 문자를 바이너리로 바꾸던 항상 charset을 지정해 줘야 한다.
-            log.info("body={}", body);
+//            log.info("body={}", body);
 
             // 파일에 저장하기
             if(StringUtils.hasText(part.getSubmittedFileName())){
@@ -67,9 +67,8 @@ public class ServletUploadControllerV2 {
                 part.write(fullPath);
                 // -> part는 write라는 것을 제공하는데 그곳에 경로를 넣어주면 된다.
             }
+            inputStream.close();
         }
         return "upload-form";
     }
-
-
 }
